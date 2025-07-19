@@ -117,11 +117,11 @@ glPushMatrix();
 ```
 #### 🎥 Demonstração
 
-[▶️ Mostrando Prograna (Clique) ->](./videos/video_demo1.webm)
+[▶️ Mostrando Prograna (Clique)](./videos/video_demo1.mp4)
 
-[▶️ Copiando Coordenadas (Clique) ->](./videos/video_demo2.webm)
+[▶️ Copiando Coordenadas (Clique)](./videos/video_demo2.mp4)
 
-[▶️ Criando Novo Objeto 3D (Clique) ->](./videos/video_demo3.webm)
+[▶️ Criando Novo Objeto 3D (Clique)](./videos/video_demo3.mp4)
 
 📌 **Basta copiar esse trecho e colá-lo diretamente no seu projeto**, substituindo os valores genéricos pelas transformações geradas, para fixar a posição, orientação e escala do objeto 3D desejado.
 
@@ -140,7 +140,7 @@ glPopMatrix();
 
 #### 🎥 Demonstração
 
-[▶️ Mostrando Prograna Com Segundo Objeto 3D (Clique) ->](./videos/video_demo4.webm)
+[▶️ Mostrando Prograna Com Segundo Objeto 3D (Clique)](./videos/video_demo4.mp4)
 
 ## 📚 Sobre
 
