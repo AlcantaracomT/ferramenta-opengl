@@ -115,21 +115,30 @@ glPushMatrix();
     glRotatef(15.00f, 0.0f, 1.0f, 0.0f);
     glScalef(1.10f, 0.90f, 1.00f);
 ```
+#### 🎥 Demonstração
+
+[▶️ Mostrando Prograna (Clique) ->](./videos/video_demo1.webm)
+[▶️ Copiando Coordenadas (Clique) ->](./videos/video_demo2.webm)
+[▶️ Criando Novo Objeto 3D (Clique) ->](./videos/video_demo3.webm)
 
 📌 **Basta copiar esse trecho e colá-lo diretamente no seu projeto**, substituindo os valores genéricos pelas transformações geradas, para fixar a posição, orientação e escala do objeto 3D desejado.
 
 ```c
 //---------- Desenho do cubo com a ferramenta ----------
 glPushMatrix();
-    glTranslatef(0.00f, 0.50f, -5.50f);
-    glRotatef(10.00f, 1.0f, 0.0f, 0.0f);
-    glRotatef(15.00f, 0.0f, 1.0f, 0.0f);
-    glScalef(1.10f, 0.90f, 1.00f);
+    glTranslatef(-0.50f, 2.50f, -5.00f);
+    glRotatef(5.00f, 1.0f, 0.0f, 0.0f);
+    glRotatef(45.00f, 0.0f, 1.0f, 0.0f);
+    glScalef(1.20f, 0.90f, 1.10f);
     criaCubo(-1.9, 1.9, 9);                // base do desenho do cubo
 glPopMatrix();
 //-------------------------------
 ```
 ---
+
+#### 🎥 Demonstração
+
+[▶️ Mostrando Prograna Com Segundo Objeto 3D (Clique) ->](./videos/video_demo4.webm)
 
 ## 📚 Sobre
 
