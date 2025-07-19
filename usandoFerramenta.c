@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <GL/glut.h>
 #include <math.h>
-#include "ferramenta.h"
+#include "ferramenta.c"
 
 // Protótipos
 void iniciar();
