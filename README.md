@@ -115,14 +115,6 @@ glPushMatrix();
     glRotatef(15.00f, 0.0f, 1.0f, 0.0f);
     glScalef(1.10f, 0.90f, 1.00f);
 ```
-#### 🎥 Demonstração
-
-[▶️ Mostrando Prograna (Clique)](./video.demo/video_demo1.mp4)
-
-[▶️ Copiando Coordenadas (Clique)](./video.demo/video_demo2.mp4)
-
-[▶️ Criando Novo Objeto 3D (Clique)](./video.demo/video_demo3.mp4)
-
 📌 **Basta copiar esse trecho e colá-lo diretamente no seu projeto**, substituindo os valores genéricos pelas transformações geradas, para fixar a posição, orientação e escala do objeto 3D desejado.
 
 ```c
@@ -138,9 +130,10 @@ glPopMatrix();
 ```
 ---
 
-#### 🎥 Demonstração
+#### 🎥 Demonstração: 
 
-[▶️ Mostrando Prograna Com Segundo Objeto 3D (Clique)](./video.demo/video_demo4.mp4)
+## [Ver Video](https://drive.google.com/drive/folders/16YacDvqhJ5iczwNdNko8dQHwvc_9IVdu?usp=sharing) 🎥
+
 
 ## 📚 Sobre
 
