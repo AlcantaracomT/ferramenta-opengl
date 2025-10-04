@@ -1,160 +1,157 @@
-# Ferramenta 3D em OpenGL (GLUT)
-Este projeto foi desenvolvido depois que a professora da disciplina de **Computação Gráfica** deu a proposta de construir um **objeto 3D manualmente**, utilizando apenas primitivas do OpenGL, sem bibliotecas externas que facilitassem a modelagem.
+# Ferramenta 3D em OpenGL (GLUT) - Versão 2.0
 
-A partir daí, tive a ideia de criar uma **ferramenta interativa** que facilitasse esse processo: com ela, é possível mover, rotacionar e redimensionar o objeto em tempo real, e então copiar os comandos gerados automaticamente no terminal para serem usados diretamente no código.
+O projeto foi desenvolvido depois que a professora da disciplina de **Computação Gráfica** deu a proposta de construir um **objeto 3D manualmente**, utilizando apenas primitivas do OpenGL.
 
-Isso transformou a tarefa de posicionar objetos 3D em algo muito mais prático e visual.
+A partir daí, criei a **versão 1.0**, uma ferramenta interativa para mover, rotacionar e redimensionar um objeto, gerando o código no terminal.
 
+Agora, na **versão 2.0**, a ferramenta foi totalmente reformulada: em vez de apenas exibir o código, ela **injeta o novo objeto diretamente no arquivo-fonte** e **recompila o programa em tempo real**. Com isso, é possível adicionar múltiplos objetos à cena de forma persistente, transformando a ferramenta em um modelador visual simples e poderoso.
 
 ## 🧱 Como funciona
 
-A tecla pressionada altera alguma propriedade (posição, rotação, escala). O terminal exibe o bloco `glPushMatrix()` com os valores atuais. É só copiar e colar.
+A ferramenta opera em três modos: **Posição**, **Escala** e **Rotação**. Você alterna entre os modos e usa as teclas de controle para manipular o objeto. Quando o objeto estiver como desejado, pressione a tecla `P` para salvar.
+
+Ao salvar:
+
+1.  A ferramenta localiza o comentário `//imprimir` no arquivo `usandoFerramenta.c`.
+2.  Insere um novo bloco de código `glPushMatrix()` com as transformações (posição, rotação, escala) do objeto atual.
+3.  Salva o arquivo, recompila o programa e o reinicia automaticamente com o novo objeto fixado na cena.
+
+Dessa forma, você pode adicionar quantos objetos quiser, um após o outro.
 
 ### 📦 Controles:
 
-| Tecla | Ação                             |
-|-------|----------------------------------|
-| `W/S` | Rotaciona o mundo (X)           |
-| `A/D` | Rotaciona o mundo (Y)           |
-| `+/-` | Zoom (mundo)                    |
-| `1/2` | Move o objeto no eixo Z (frente e atrás)        |
-| `4/6` | Move o objeto no eixo X (esquerda e direita)       |
-| `8/5` | Move o objeto no eixo Y (cima e baixo)        |
-| `Z/X` | Escala largura (X)              |
-| `C/V` | Escala altura (Y)               |
-| `B/N` | Escala profundidade (Z)         |
-| `I/K` | Rotação do objeto (X)           |
-| `J/L` | Rotação do objeto (Y)           |
-| `ESC`| Sai do programa                  |
+A ferramenta possui 3 modos de operação para manipular o objeto.
 
----
+| Tecla | Ação |
+| :---: | :--- |
+| `c` | Ativa o **Modo Posição** (mover o objeto) |
+| `z` | Ativa o **Modo Escala** (redimensionar o objeto) |
+| `x` | Ativa o **Modo Rotação** (girar o objeto) |
+| `p` | **Salva** o objeto atual no código e reinicia o programa |
+| `ESC` | Sai do programa |
+
+-----
+
+#### Controles de Câmera e Zoom
+
+| Ação | Controle |
+| :--- | :--- |
+| **Girar a câmera** | Mantenha o **botão esquerdo do mouse** pressionado e mova |
+| **Zoom geral** | Teclas `+` / `-` |
+
+-----
+
+#### Controles do Objeto (dependem do modo ativo)
+
+| Tecla | Modo Posição | Modo Escala | Modo Rotação |
+|:---:|---|---|---|
+| `w` | Mover para cima | Aumentar altura (Y) | Girar para cima (eixo X) |
+| `s` | Mover para baixo | Diminuir altura (Y) | Girar para baixo (eixo X) |
+| `a` | Mover para esquerda | Diminuir profundidade (Z) | Girar para esquerda (eixo Y) |
+| `d` | Mover para direita | Aumentar profundidade (Z) | Girar para direita (eixo Y) |
+| `e` | Mover para frente | Aumentar largura (X) | Girar sentido horário (eixo Z) |
+| `r` | Mover para trás | Diminuir largura (X) | Girar sentido anti-horário (eixo Z) |
+| **Setas** | *Sem ação* | *Sem ação* | Gira nos eixos X e Y |
+
+-----
 
 ## 🔧 Instalação e Execução
 
-### 1. Pré-requisitos
+### 1\. Pré-requisitos
 
-Este projeto pode ser executado em **Linux** ou **Windows**, desde que tenha:
+O projeto pode ser executado em **Linux**. Você precisará de:
 
-* Um compilador C (`gcc`, `MinGW`, ou `Visual Studio`)
-* OpenGL e a biblioteca **FreeGLUT** instalados/configurados
+  * Um compilador C (`gcc`)
+  * OpenGL e a biblioteca **FreeGLUT** instalados
 
----
+-----
 
 ### 💻 No Linux (testado no Kali/Ubuntu)
 
-#### 1. Instalar as bibliotecas necessárias:
+#### 1\. Instalar as bibliotecas necessárias:
 
 ```bash
 sudo apt update
 sudo apt install freeglut3-dev build-essential
 ```
 
-#### 2. Compilar:
+#### 2\. Compilar:
 
 ```bash
-gcc main.c ferramenta.c -o ferramenta3d -lGL -lGLU -lglut -lm
+gcc usandoFerramenta.c -o a -lGL -lGLU -lglut -lm
 ```
 
-> ⚠️ Certifique-se de que os arquivos `main.c` e `ferramenta.c` estejam na mesma pasta.
+> ⚠️ Certifique-se de que os arquivos `usandoFerramenta.c` e `ferramenta.h` estejam na mesma pasta.
 
-#### 3. Executar:
+#### 3\. Executar:
 
 ```bash
-./ferramenta3d
+./a
 ```
 
----
+-----
 
-### 🪟 No Windows (MinGW + FreeGLUT)
+### 🪟 No Windows
 
-#### 1. Instalar:
+A funcionalidade de autocompilação (`system("gcc ...")` e `execl(...)`) foi pensada para ambientes Linux. Para usar no Windows, seria necessário adaptar os comandos no código-fonte para o seu compilador (ex: MinGW) e o sistema de arquivos do Windows.
 
-* [MinGW](https://www.mingw-w64.org/)
-* Bibliotecas `freeglut`, `opengl32`, `glu32` (você pode baixar binários ou instalar via pacotes como MSYS2)
+-----
 
-#### 2. Compilar (via terminal do MinGW):
+## 💡 Exemplo de Uso
 
-```bash
-gcc main.c ferramenta.c -o ferramenta3d.exe -lfreeglut -lopengl32 -lglu32 -lm
-```
+1.  Execute o programa. Um cubo aparecerá no centro.
+2.  Pressione `c` para entrar no modo de Posição e use as teclas `W/A/S/D` para movê-lo.
+3.  Pressione `z` para entrar no modo de Escala e use `E/R` para deixá-lo mais largo.
+4.  Pressione `x` para entrar no modo de Rotação e gire-o com as setas do teclado.
+5.  Quando estiver satisfeito, pressione `P`.
+6.  O programa irá fechar e reabrir instantaneamente. Agora, o primeiro cubo está salvo e um novo cubo controlável apareceu para você posicionar.
 
-> Inclua os headers e libs do FreeGLUT no diretório do MinGW, ou configure as variáveis de ambiente.
-
-#### 3. Executar:
-
-```bash
-./ferramenta3d.exe
-```
----
-
-## 💡 Exemplo de saída (terminal)
-
-Durante o uso da ferramenta, você poderá movimentar, rotacionar e escalar o objeto interativamente em tempo real.
-Sempre que uma transformação é aplicada, o terminal imprime um bloco pronto para uso em seu código.
-
-### 🧱 Estrutura recomendada no código:
+O código em `usandoFerramenta.c` será atualizado automaticamente. A seção de desenho ficará assim:
 
 ```c
 //---------- Desenho do cubo com a ferramenta ----------
 glPushMatrix();
-    glTranslatef(posX, posY, posZ);        // posição do cubo com a ferramenta
-    glRotatef(eixoX1, 1.0, 0.0, 0.0);      // rotação do cubo com a ferramenta (eixo X)
-    glRotatef(eixoY1, 0.0, 1.0, 0.0);      // rotação do cubo com a ferramenta (eixo Y)
-    glScalef(escalaX, escalaY, escalaZ);   // escala do cubo com a ferramenta
-    criaCubo(-1.9, 1.9, 9);                // base do desenho do cubo
+    glTranslatef(posX, posY, posZ);
+    glRotatef(eixoX1, 1.0, 0.0, 0.0);
+    glRotatef(eixoY1, 0.0, 1.0, 0.0);
+    glRotatef(eixoZ1, 0.0, 0.0, 1.0);
+    glScalef(escalaX, escalaY, escalaZ);
+    criaCubo(-1.9, 1.9, 9);  
 glPopMatrix();
-//-------------------------------
-```
 
-### 📤 Exemplo real impresso no terminal:
-
-```c
+//imprimir
+// O NOVO CUBO SALVO APARECERÁ AQUI:
 glPushMatrix();
-    glTranslatef(0.00f, 0.50f, -5.50f);
-    glRotatef(10.00f, 1.0f, 0.0f, 0.0f);
-    glRotatef(15.00f, 0.0f, 1.0f, 0.0f);
-    glScalef(1.10f, 0.90f, 1.00f);
-```
-📌 **Basta copiar esse trecho e colá-lo diretamente no seu projeto**, substituindo os valores genéricos pelas transformações geradas, para fixar a posição, orientação e escala do objeto 3D desejado.
-
-```c
-//---------- Desenho do cubo com a ferramenta ----------
-glPushMatrix();
-    glTranslatef(-0.50f, 2.50f, -5.00f);
-    glRotatef(5.00f, 1.0f, 0.0f, 0.0f);
-    glRotatef(45.00f, 0.0f, 1.0f, 0.0f);
-    glScalef(1.20f, 0.90f, 1.10f);
-    criaCubo(-1.9, 1.9, 9);                // base do desenho do cubo
+    glTranslatef(1.00f, 0.50f, -5.00f);
+    glRotatef(-15.00f, 1.0f, 0.0f, 0.0f);
+    glRotatef(20.00f, 0.0f, 1.0f, 0.0f);
+    glScalef(1.50f, 1.00f, 1.00f);
+    criaCubo(-1.9, 1.9, 9);
 glPopMatrix();
-//-------------------------------
+        
 ```
----
 
-#### 🎥 Demonstração: 
-
-## [Ver Video](https://drive.google.com/drive/folders/16YacDvqhJ5iczwNdNko8dQHwvc_9IVdu?usp=sharing) 🎥
-
-
+-----
 ## 📚 Sobre
 
-Esta ferramenta foi criada como apoio ao aprendizado de modelagem 3D manual com OpenGL, permitindo experimentar transformações visuais e gerar os comandos prontos no terminal.
+Esta ferramenta foi criada como apoio ao aprendizado de modelagem 3D manual com OpenGL, permitindo experimentar transformações visuais e gerar os comandos diretamente no código-fonte.
 
 **Disciplina:** Computação Gráfica
 **Curso:** Ciência da Computação - UESC
 **Autor:** Tiago Alcantara
 
----
+-----
 
 ## 📁 Estrutura do projeto
 
-- `usandoFerramenta.c`: Código principal que cria a janela e o objeto 3D.
-- `ferramenta.c`: Implementação da ferramenta interativa.
-- `README.md`: Documentação do projeto.
+  * `usandoFerramenta.c`: Código principal que implementa a lógica da janela, controles e a funcionalidade de autocompilação.
+  * `ferramenta.h`: Arquivo de cabeçalho com as declarações de funções e variáveis globais.
+  * `README.md`: Documentação do projeto.
 
----
+-----
 
 ## © Direitos Autorais
 
 © 2025 Tiago Alcantara. Todos os direitos reservados.
 
----
+-----
